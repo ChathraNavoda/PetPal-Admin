@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:petpaladmin/src/blocs/authentication_bloc/authentication_bloc.dart';
+
+import 'src/routes/routes.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -15,7 +19,7 @@ class MyAppView extends StatelessWidget {
           onPrimary: Colors.white,
         ),
       ),
-      // routerConfig: router(context.read<AuthenticationBloc>()),
+      routerConfig: router(context.read<AuthenticationBloc>()),
     );
   }
 }
