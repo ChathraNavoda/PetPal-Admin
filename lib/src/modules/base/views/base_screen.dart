@@ -11,8 +11,20 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.teal,
+      body: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: kToolbarHeight,
+            color: Colors.pinkAccent,
+          ),
+          Expanded(
+            child: widget.child,
+          )
+        ],
+      ),
     );
   }
 }
