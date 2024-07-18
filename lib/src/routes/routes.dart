@@ -5,6 +5,7 @@ import 'package:petpaladmin/src/blocs/authentication_bloc/authentication_bloc.da
 import 'package:petpaladmin/src/modules/auth/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'package:petpaladmin/src/modules/auth/views/login_screen.dart';
 import 'package:petpaladmin/src/modules/base/views/base_screen.dart';
+import 'package:petpaladmin/src/modules/create_items/views/create_items_screen.dart';
 import 'package:petpaladmin/src/modules/home/views/home_screen.dart';
 import 'package:petpaladmin/src/modules/splash/views/splash_screen.dart';
 
@@ -27,7 +28,11 @@ GoRouter router(AuthenticationBloc authBloc) {
           if (state.fullPath == '/login' || state.fullPath == "/") {
             return child;
           } else {
-            return BaseScreen(child);
+            return BlocProvider<SignInBloc>(
+              create: (context) =>
+                  SignInBloc(context.read<AuthenticationBloc>().userRepository),
+              child: BaseScreen(child),
+            );
           }
         },
         routes: [
@@ -51,10 +56,11 @@ GoRouter router(AuthenticationBloc authBloc) {
           ),
           GoRoute(
             path: '/home',
-            builder: (context, state) => BlocProvider<AuthenticationBloc>.value(
-              value: BlocProvider.of<AuthenticationBloc>(context),
-              child: const HomeScreen(),
-            ),
+            builder: (context, state) => const HomeScreen(),
+          ),
+          GoRoute(
+            path: '/create',
+            builder: (context, state) => const CreateItemsScreen(),
           ),
         ],
       )
