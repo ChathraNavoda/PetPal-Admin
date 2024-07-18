@@ -11,6 +11,12 @@ class Macros {
     required this.width,
   });
 
+  static final empty = Macros(
+    weight: 0,
+    length: 0,
+    width: 0,
+  );
+
   MacrosEntity toEntity() {
     return MacrosEntity(
       weight: weight,

@@ -1,5 +1,6 @@
 import 'package:pet_repository/src/entities/pet_supplies_entity.dart';
 import 'package:pet_repository/src/models/macros.dart';
+import 'package:uuid/uuid.dart';
 
 class Item {
   String itemId;
@@ -23,6 +24,17 @@ class Item {
     required this.discount,
     required this.macros,
   });
+
+  static final empty = Item(
+      itemId: const Uuid().v1(),
+      picture: '',
+      name: '',
+      description: '',
+      itemGroup: '',
+      petGroup: '',
+      price: 30,
+      discount: 10,
+      macros: Macros.empty);
 
   ItemEntity toEntity() {
     return ItemEntity(
